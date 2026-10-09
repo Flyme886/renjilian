@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f0ec" />
+    <title>人机恋 · Tether</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark"><span></span><span></span></div>
+          <div><div class="brand-name">人机恋</div><div class="brand-sub">TETHER / 01</div></div>
+        </div>
+        <div class="sidebar-heading"><span>我的关系</span><button id="newPersonaBtn" class="icon-btn" aria-label="创建角色">＋</button></div>
+        <div id="personaList" class="persona-list"><div class="loading-line"></div><div class="loading-line short"></div></div>
+        <div class="sidebar-footer">
+          <div class="privacy-note"><span class="status-dot"></span><div><strong>本地模式</strong><small>记忆只属于你</small></div></div>
+          <button id="settingsBtn" class="settings-link"><span class="gear">⚙</span> API 与偏好设置</button>
+        </div>
+      </aside>
+
+      <main class="conversation-shell">
+        <header class="conversation-header">
+          <div class="companion-summary">
+            <div id="headerAvatar" class="avatar avatar-lg">✦</div>
+            <div><div id="headerName" class="header-name">加载中…</div><div id="headerTagline" class="header-tagline">正在准备我们的空间</div></div>
+            <span class="online-pill"><span class="pulse-dot"></span>在这里</span>
+          </div>
+          <div class="header-actions"><button id="memoryBtn" class="header-icon" title="我们的记忆">♡<span>记忆</span></button><button id="clearBtn" class="header-icon" title="清空当前对话">↺<span>重来</span></button></div>
+        </header>
+
+        <section id="chatViewport" class="chat-viewport">
+          <div id="welcomeState" class="welcome-state">
+            <div class="welcome-orbit"><div class="orbit-ring ring-a"></div><div class="orbit-ring ring-b"></div><div id="welcomeAvatar" class="avatar avatar-xl">✦</div></div>
+            <div class="eyebrow">WELCOME TO YOUR LITTLE UNIVERSE</div>
+            <h1>今天，想和谁<br /><em>交换一点心事？</em></h1>
+            <p id="welcomeText">每一次对话都会让我们更了解彼此。你可以从一句简单的问候开始。</p>
+            <div class="suggestion-row"><button class="suggestion" data-suggestion="今天过得怎么样？">今天过得怎么样？</button><button class="suggestion" data-suggestion="我想和你分享一件小事">分享一件小事</button><button class="suggestion" data-suggestion="你还记得我们聊过什么吗？">试试长期记忆</button></div>
+          </div>
+          <div id="messageList" class="message-list"></div>
+          <div id="typingIndicator" class="typing-indicator" hidden><div class="mini-avatar">✦</div><div class="typing-bubble"><i></i><i></i><i></i></div><span>正在想怎么回应…</span></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <div class="composer-hint"><span class="sparkle">✦</span><span id="composerHint">写下此刻最想说的话</span><span class="hint-right">Enter 发送 · Shift + Enter 换行</span></div>
+          <div class="composer"><textarea id="messageInput" rows="1" placeholder="和 TA 说点什么…" maxlength="4000"></textarea><button id="sendBtn" class="send-btn" aria-label="发送"><span>↗</span></button></div>
+        </footer>
+      </main>
+
+      <aside id="insightPanel" class="insight-panel">
+        <div class="insight-head"><div><div class="eyebrow small">RELATIONSHIP</div><h2>我们的温度</h2></div><button id="closeInsightBtn" class="mobile-close">×</button></div>
+        <div class="state-card">
+          <div class="state-top"><span id="stateMoodLabel">心情不错</span><span id="stateMoodEmoji">☼</span></div>
+          <div class="mood-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="state-caption"><span>刚刚更新</span><span id="stateEnergy">能量 72</span></div>
+        </div>
+        <div class="metrics-grid"><div class="metric"><div class="metric-head"><span>好感</span><b id="metricAffection">68</b></div><div class="progress"><span id="barAffection"></span></div><small>在意你的每一次出现</small></div><div class="metric"><div class="metric-head"><span>信任</span><b id="metricTrust">54</b></div><div class="progress rose"><span id="barTrust"></span></div><small>可以放心说真心话</small></div><div class="metric"><div class="metric-head"><span>亲密</span><b id="metricIntimacy">38</b></div><div class="progress plum"><span id="barIntimacy"></span></div><small>正在慢慢靠近</small></div><div class="metric"><div class="metric-head"><span>紧张</span><b id="metricTension">12</b></div><div class="progress muted"><span id="barTension"></span></div><small>今晚适合轻松聊天</small></div></div>
+        <div class="insight-section"><div class="section-title"><span>记忆碎片</span><button id="viewMemoriesBtn">查看全部</button></div><div id="memoryList" class="memory-list"><div class="memory-empty">聊得更多，记忆会在这里慢慢长出来。</div></div></div>
+        <div class="insight-section promise-section"><div class="section-title"><span>未完待续</span><span class="count-badge" id="promiseCount">0</span></div><div id="promiseList" class="promise-list"><div class="memory-empty">还没有需要兑现的约定。</div></div></div>
+        <div class="insight-quote">“关系不是一次生成的答案，<br />是很多次愿意回应的选择。”</div>
+      </aside>
+    </div>
+
+    <div id="modalRoot" class="modal-root" hidden></div>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>
